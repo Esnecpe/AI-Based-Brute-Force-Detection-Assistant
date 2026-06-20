@@ -114,7 +114,7 @@ The goal of this project is to demonstrate how Artificial Intelligence technique
 
 ## Authors
 
-Adrian Hernandez
+Adrian Hernandez &
 Peter Sarmiento
 
 California State University, Fullerton
