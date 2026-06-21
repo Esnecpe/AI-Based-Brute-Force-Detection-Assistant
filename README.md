@@ -168,7 +168,7 @@ The system evaluates multiple pieces of cybersecurity evidence and calculates th
 
 ## Authors
 
-**Adrian Hernandez**
+**Adrian Hernandez** &
 **Peter Sarmiento**
 
 ---
