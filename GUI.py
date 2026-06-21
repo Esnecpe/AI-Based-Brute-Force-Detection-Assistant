@@ -13,7 +13,7 @@ class CyberSecurityGUI:
 
         title = tk.Label(
             root,
-            text="Cybersecurity Threat Intelligence Assistant",
+            text="AI-Based Brute Force Detection Assistant",
             font=("Arial", 18, "bold")
         )
         title.grid(row=0, column=0, columnspan=2, pady=(10, 15))
