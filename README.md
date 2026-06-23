@@ -2,111 +2,133 @@
 
 ## Overview
 
-The AI-Based Brute Force Detection Assistant is a cybersecurity tool that uses Bayesian Networks and Artificial Intelligence techniques to estimate the probability of brute force attacks.
+The AI-Based Brute Force Detection Assistant is an Artificial Intelligence and Cybersecurity project that uses a Bayesian Network to estimate the probability of a brute force attack.
 
-The system analyzes suspicious login-related indicators associated with IP addresses, URLs, and domains and applies probabilistic reasoning to determine whether brute force behavior is likely occurring. By combining cybersecurity evidence with Bayesian inference, the system provides risk assessments, explanations, and recommended mitigation actions.
+The system allows users to select evidence variables commonly associated with brute force attacks and then uses probabilistic reasoning to determine the likelihood that a brute force attack is occurring.
 
-This project was developed as part of an Artificial Intelligence course and demonstrates the practical application of Bayesian Networks in cybersecurity threat detection.
+This project was developed as part of an Artificial Intelligence course at California State University, Fullerton and demonstrates the practical application of Bayesian Networks for cybersecurity threat detection.
 
 ---
 
 ## Features
 
-* Brute Force Attack Detection
-* Bayesian Network Inference
-* Probability-Based Risk Assessment
-* Risk Level Classification
+* Bayesian Network-Based Brute Force Detection
+* Evidence-Based Threat Assessment
+* Probability-Based Risk Classification
 * Explainable AI Results
-* Security Recommendations
 * Graphical User Interface (GUI)
-* IP Address Analysis
+* Cybersecurity Decision Support
+* Brute Force Attack Probability Estimation
+
+---
+
+## Evidence Variables
+
+The Bayesian Network uses the following evidence nodes:
+
+* Multiple Failed Logins
+* Attempts From Same IP
+* Attempts Across Many Accounts
+* Login Attempts Outside Normal Hours
+* Suspicious IP / Geolocation
+* Successful Login After Failures
+
+Each variable can be assigned one of the following values:
+
+* True
+* False
+* NA (Unknown / Not Available)
+
+These evidence variables are used by the Bayesian Network to estimate the probability of a brute force attack.
 
 ---
 
 ## System Architecture
 
 ```text
-User Input
-(IP Address)
-            ↓
+User Evidence Selection
+        ↓
 
-Evidence Collection
+Evidence Nodes
 
-• Failed Login Attempts
-• Login Frequency
-• Multiple Username Attempts
-• Suspicious Access Time
-• IP Reputation
+• Multiple Failed Logins
+• Same IP
+• Many Accounts
+• Outside Hours
+• Suspicious IP
+• Success After Failures
 
-            ↓
+        ↓
 
 Bayesian Network
 
 (Probabilistic Reasoning)
 
-            ↓
+        ↓
 
 Brute Force Probability
 
-            ↓
+        ↓
 
 Risk Classification
 
 (Low / Medium / High)
 
-            ↓
+        ↓
 
 Explanation Engine
 
-            ↓
+        ↓
 
 GUI Output
 ```
 
 ---
 
-## Example Inputs
+## Graphical User Interface
 
-### IP Address
+The GUI allows users to select cybersecurity evidence through dropdown menus.
 
-```text
-185.220.101.5
-```
+Current GUI Components:
+
+* Input Type (IP Address)
+* Multiple Failed
+* Same IP
+* Many Accounts
+* Outside Hours
+* Suspicious IP
+* Success After Failures
+* Analyze Button
+* Results Window
+
+The Analyze button will trigger the Bayesian Network and display the final assessment inside the output panel.
 
 ---
 
-## Example Output
+## Example Scenario
+
+### Selected Evidence
 
 ```text
-Target:
-185.220.101.5
+Multiple Failed: True
+Same IP: True
+Many Accounts: True
+Outside Hours: True
+Suspicious IP: True
+Success After Failures: False
+```
 
+### Expected Result
+
+```text
 Threat Type:
 Brute Force Attack
 
-Brute Force Probability:
-87%
+Probability:
+92%
 
 Risk Level:
 HIGH
-
-Evidence:
-- Failed Login Attempts: High
-- Login Frequency: High
-- Multiple Username Attempts: Yes
-- Suspicious Access Time: Yes
-
-Explanation:
-The Bayesian Network estimates a high probability
-of brute force activity based on repeated failed
-authentication attempts and abnormal login patterns.
-
-Recommended Actions:
-- Block the source IP
-- Enable Multi-Factor Authentication (MFA)
-- Review authentication logs
-- Configure account lockout policies
-- Continue monitoring login activity
 ```
 
 ---
@@ -118,46 +140,111 @@ Recommended Actions:
 * Bayesian Networks
 * NumPy
 * Pandas
-* Large Language Models (LLMs)
-* VirusTotal API (Optional)
-* AbuseIPDB API (Optional)
 
 ---
 
-## Bayesian Network Model
+## Project Structure
 
-The Bayesian Network evaluates several cybersecurity indicators and combines them to estimate the likelihood of a brute force attack.
+```text
+AI-Based-Brute-Force-Detection-Assistant/
 
-### Evidence Nodes
+│
+├── GUI.py
+├── diagnostic.py
+├── bayesian_network.py
+├── README.md
+│
+└── assets/
+```
 
-* Failed Login Attempts
-* Login Frequency
-* Multiple Username Attempts
-* Suspicious Access Time
-* IP Reputation
+---
 
-### Target Node
+## File Descriptions
 
-* Brute Force Attack Probability
+### GUI.py
 
-The model uses probabilistic reasoning to calculate the likelihood that a brute force attack is occurring based on the collected evidence.
+Contains the graphical user interface built using Tkinter.
+
+Responsibilities:
+
+* Display evidence variables
+* Collect user selections
+* Display analysis results
+* Provide interaction between the user and the Bayesian Network
+
+### diagnostic.py
+
+Handles the cybersecurity analysis workflow.
+
+Responsibilities:
+
+* Receive GUI inputs
+* Process evidence variables
+* Generate threat assessments
+* Produce recommendations
+
+### bayesian_network.py
+
+Implements the Bayesian Network model.
+
+Responsibilities:
+
+* Define evidence nodes
+* Define probability tables
+* Perform Bayesian inference
+* Calculate brute force attack probability
+
+### README.md
+
+Project documentation.
+
+Responsibilities:
+
+* Explain project goals
+* Describe architecture
+* Explain code structure
+* Help other students understand the project
+
+### assets/
+
+Stores project screenshots, diagrams, and supporting images.
+
+---
+
+## Bayesian Network Design
+
+Evidence Nodes:
+
+* Multiple Failed Logins
+* Attempts From Same IP
+* Attempts Across Many Accounts
+* Outside Hours
+* Suspicious IP / Geolocation
+* Successful Login After Failures
+
+Target Node:
+
+* Brute Force Attack
+
+The Bayesian Network combines the evidence nodes and calculates the probability that a brute force attack is occurring.
 
 ---
 
 ## Project Goals
 
-The primary goal of this project is to demonstrate how Bayesian Networks can be used to detect brute force attacks through probabilistic reasoning.
+The goal of this project is to demonstrate how Bayesian Networks can be applied to cybersecurity threat detection.
 
-The system evaluates multiple pieces of cybersecurity evidence and calculates the likelihood that a brute force attack is occurring. The project also provides explainable AI outputs and actionable security recommendations for analysts and system administrators.
+The system uses evidence-based reasoning to estimate the likelihood of brute force attacks and provide understandable explanations for users.
 
 ---
 
 ## Authors
 
-**Adrian Hernandez** &
-**Peter Sarmiento**
+Adrian Hernandez
+&
+Peter Sarmiento
 
----
+California State University, Fullerton
 
-**California State University, Fullerton**
 Department of Computer Science
+
