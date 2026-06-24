@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-#from cybersecurity_diagnostics import CyberSecurityDiagnostics
+from bruteForceDiagnostic import BruteForceDiagnostics
+from llm_explainer import BruteForceLLMExplainer
 
 
 class CyberSecurityGUI:
@@ -9,7 +10,8 @@ class CyberSecurityGUI:
         self.root = root
         self.root.title("AI Consultant")
 
-        #self.diagnostic_system = CyberSecurityDiagnostics()
+        self.diagnostic_system = BruteForceDiagnostics()
+        self.llm_explainer = BruteForceLLMExplainer()
 
 
         title = tk.Label(
@@ -58,7 +60,7 @@ class CyberSecurityGUI:
             cb = ttk.Combobox(
                 left,
                 textvariable=var,
-                values=["NA", "True", "False"],
+                values=["True", "False"],
                 state="readonly",
                 width=10
             )
@@ -82,20 +84,34 @@ class CyberSecurityGUI:
         root.minsize(w, h)
 
     def run_analysis(self):
-        result = self.diagnostic_system.analyze_threat(
-            self.input_type_var.get(),
-            self.target_var.get()
+        original_inputs = {
+            "multiple_failed": self.multiple_failed_var.get(),
+            "same_ip": self.same_ip_var.get(),
+            "many_accounts": self.many_accounts_var.get(),
+            "outside_hours": self.outside_hours_var.get(),
+            "suspicious_ip": self.suspicious_ip_var.get(),
+            "success_after_failures": self.success_after_failures_var.get()
+        }
+
+        bn_result = self.diagnostic_system.diagnose(
+            multiple_failed=original_inputs["multiple_failed"],
+            same_ip=original_inputs["same_ip"],
+            many_accounts=original_inputs["many_accounts"],
+            outside_hours=original_inputs["outside_hours"],
+            suspicious_ip=original_inputs["suspicious_ip"],
+            success_after_failures=original_inputs["success_after_failures"]
         )
 
-        output_text = f"Target:\n{result['target']}\n\n"
-        output_text += f"Diagnosis:\n{result['diagnosis']}\n\n"
-        output_text += f"Threat Score:\n{result['threat_score']}%\n\n"
-        output_text += f"Risk Level:\n{result['risk_level']}\n\n"
-        output_text += f"Explanation:\n{result['explanation']}\n\n"
-        output_text += "Recommended Actions:\n"
+        llm_output = self.llm_explainer.explain_result(
+            bn_result,
+            original_inputs
+        )
 
-        for action in result["recommendations"]:
-            output_text += f"- {action}\n"
+        output_text = "Bayesian Network Result:\n"
+        output_text += f"Probability of brute-force attack: {bn_result['probability_percentage']}%\n"
+        output_text += f"Risk Level: {bn_result['risk_level']}\n\n"
+        output_text += "LLM Explanation and Recommendation:\n"
+        output_text += llm_output
 
         self.textbox.delete("1.0", tk.END)
         self.textbox.insert(tk.END, output_text)
