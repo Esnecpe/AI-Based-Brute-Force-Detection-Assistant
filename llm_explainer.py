@@ -1,23 +1,20 @@
+# Import necessary libraries
+from openai import OpenAI
 import os
-from codecs import ignore # Not needed, just an example
-import requests
-from dotenv import load_data, load_dotenv
+from dotenv import load_dotenv
 
-# 1. Load the variables from the .env file into the system environment
+# Load variables from .env file
 load_dotenv()
 
-# 2. Retrieve the API key string securely
-api_key = os.getenv("MY_API_KEY")
-
-# Get the API key from Colab secrets
-OPENAI_API_KEY = userdata.get('CPSC481_API_Key')
+# Access the variable
+api_key = os.environ.get("CPSC481_API_KEY")
 
 class BruteForceLLMExplainer:
   """Use an LLM to explain the Bayesian Network result."""
   def __init__(self):
     # Initialize the OpenAI client
     self.llm = OpenAI(
-    api_key=OPENAI_API_KEY,
+    api_key=api_key,
     base_url="https://ellm.nrp-nautilus.io/v1",
     )
 

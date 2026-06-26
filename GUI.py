@@ -60,7 +60,7 @@ class CyberSecurityGUI:
             cb = ttk.Combobox(
                 left,
                 textvariable=var,
-                values=["True", "False"],
+                values=["NA", "True", "False"],
                 state="readonly",
                 width=10
             )

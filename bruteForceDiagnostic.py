@@ -51,6 +51,7 @@ class BruteForceDiagnostics:
         })
     ])
 
+  # Converts string inputs from the GUI interface to boolean T/F for Bayesian Network queries
   def true_false_to_bool(self, value):
     if value == "True":
       return T
