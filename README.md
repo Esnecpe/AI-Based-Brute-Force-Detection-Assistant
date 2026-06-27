@@ -14,6 +14,7 @@ CPSC 481 – Artificial Intelligence
 # How to Run the Program
 
 Make sure all files are in the same directory (bruteForceDiagnostic.py, llm_explainer, GUI.py, probability4e.py, and utils4e.py).
+
 The only modification that needs to be made is replacing the API key in llm_explainer.py
 The only file you need to run is the GUI.py file.
 In a terminal you can run 'python GUI.py' and the GUI interface should pop up. 
